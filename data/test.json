@@ -1,7 +1,7 @@
 [
   {
    "title": "aaaaa",
-    "authors": ["Ryota Yamada", "Vladimir Vladimirovich Putin", "Mohandas Karamchand Gandhi", "Catherine Deneuve"],
+    "authors": ["Ryota Yamada", "Vladimir Vladimirovich Putin", "Mohandas Karamchand Gandhi", "Catherine Deneuve", "Donald Trump"],
     "country": ["predict_country1", "predict_country2", "predict_country3", "predict_country3"],
     "pdf": "dddd.pdf"
   },
