@@ -1,6 +1,8 @@
 import os
 import json
 from google.cloud import translate
+from tqdm import tqdm
+import glob
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = './google-credentials.json'
 
@@ -21,7 +23,7 @@ def detect_language_from_json(file_path):
     with open(file_path) as f:
         data = json.load(f)
 
-    for d in data:
+    for d in tqdm(data):
         authors = d['authors']
         coutries = list(map(detect_language, authors))
         d['country'] = coutries
@@ -30,10 +32,12 @@ def detect_language_from_json(file_path):
 
 
 if __name__ == '__main__':
-    input_file_path = 'data/test.json'
-    output_file_path = 'data/test_detected.json'
+    input_files = glob.glob('data/ACL*.json')
+    output_files = [f.split('.')[0]+'-labeled.json' for f in input_files]
 
-    data = detect_language_from_json(input_file_path)
+    for input_file, output_file in zip(input_files, output_files):
+        print(input_file)
+        data = detect_language_from_json(input_file)
 
-    with open(output_file_path, 'w') as f:
-        json.dump(data, f, indent=4)
+        with open(output_file, 'w') as f:
+            json.dump(data, f, indent=4)
