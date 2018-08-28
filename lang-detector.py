@@ -32,12 +32,19 @@ def detect_language_from_json(file_path):
 
 
 if __name__ == '__main__':
-    input_files = glob.glob('data/ACL*.json')
-    output_files = [f.split('.')[0]+'-labeled.json' for f in input_files]
+    # input_files = glob.glob('data/ACL*.json')
+    # output_files = [f.split('.')[0]+'-labeled.json' for f in input_files]
+    #
+    # for input_file, output_file in zip(input_files, output_files):
+    #     print(input_file)
+    #     data = detect_language_from_json(input_file)
+    #
+    #     with open(output_file, 'w') as f:
+    #         json.dump(data, f, indent=4)
 
-    for input_file, output_file in zip(input_files, output_files):
-        print(input_file)
-        data = detect_language_from_json(input_file)
+    input_file = 'data/nips_2017.json'
+    output_file = 'data/nips_2017_labeled.json'
+    data = detect_language_from_json(input_file)
 
-        with open(output_file, 'w') as f:
-            json.dump(data, f, indent=4)
+    with open(output_file, 'w') as f:
+        json.dump(data, f, indent=4)
