@@ -126,7 +126,7 @@
         "paper_type": "Long",
         "country": [
             "de",
-            "ja"
+            "en"
         ]
     },
     {
@@ -178,7 +178,7 @@
         "country": [
             "zh-CN",
             "zh-CN",
-            "ja",
+            "zh-CN",
             "zh-CN",
             "zh-CN",
             "zh-CN"
@@ -279,7 +279,7 @@
         "paper_type": "Long",
         "country": [
             "fr",
-            "ja",
+            "en",
             "hi",
             "es"
         ]
@@ -410,7 +410,7 @@
             "it",
             "en",
             "nl",
-            "ja",
+            "en",
             "en",
             "it"
         ]
@@ -4053,7 +4053,7 @@
         "country": [
             "en",
             "en",
-            "ja",
+            "en",
             "de"
         ]
     },
@@ -4072,7 +4072,7 @@
             "sk",
             "en",
             "ru",
-            "ja",
+            "en",
             "sk"
         ]
     },
@@ -4458,7 +4458,7 @@
             "zh-CN",
             "zh-CN",
             "zh-CN",
-            "ja",
+            "zh-CN",
             "zh-CN"
         ]
     },
@@ -4474,7 +4474,7 @@
         "country": [
             "ar",
             "jw",
-            "ja"
+            "en"
         ]
     },
     {
@@ -4488,7 +4488,7 @@
         "paper_type": "Short",
         "country": [
             "hi",
-            "ja",
+            "en",
             "it"
         ]
     },
@@ -4689,7 +4689,7 @@
             "mr",
             "en",
             "ar",
-            "ja",
+            "ar",
             "de"
         ]
     },
@@ -5181,7 +5181,7 @@
         "country": [
             "ja",
             "ja",
-            "id",
+            "ja",
             "ja"
         ]
     },
@@ -5580,7 +5580,7 @@
         "country": [
             "de",
             "zh-CN",
-            "ja"
+            "en"
         ]
     },
     {
