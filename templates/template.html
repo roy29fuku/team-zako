@@ -19,138 +19,185 @@
 
 		<script>
 $(function() {
-  $.getJSON("static/data/acl_2017_labeled.json" , function(data) {
-    var ulObj = $("#demo"), len = data.length;
-    for(var i = 0; i < len; i++) {
-			var title = data[i].title;
-			var authors = data[i].authors;
-			var authors_str = authors.join(', ');
 
-			var first_author_country = data[i].country[0]; // zh-CN
-			var country_png = 'unk.png'
-			var pdf_url = data[i].pdf
-			switch(first_author_country) {
-				    case 'zh-CN':
-							country_png = 'China.png'
-							break;
-				    case 'en':
-							country_png = 'United-States.png'
-				      break;
-				    case 'de':
-							country_png = 'Germany.png'
-							break;
-				    case 'ja':
-							country_png = 'Japan.png'
-							break;
-				    case 'hi':
-							country_png = 'India.png'
-							break;
-				    case 'fr':
-							country_png = 'France.png'
-							break;
-				    case 'it':
-							country_png = 'Italy.png'
-							break;
-						case 'eu':
-							ountry_png = 'Basque-Country.png'
-							break;
-						case 'ar':
-							ountry_png = 'Saudi-Arabia.png'
-							break;
-						case 'az':
-							ountry_png = 'Azerbaijan.png'
-							break;
-						case 'bg':
-							ountry_png = 'Bulgaria.png'
-							break;
-						case 'pt':
-							ountry_png = 'Portugal.png'
-							break;
-						case 'ro':
-							ountry_png = 'Romania.png'
-							break;
-						case 'ru':
-							ountry_png = 'Russia.png'
-							break;
-						case 'sk':
-							ountry_png = 'Slovakia.png'
-							break;
-						case 'sl':
-							ountry_png = 'Slovenia.png'
-							break;
-						case 'sq':
-							ountry_png = 'Albania.png'
-							break;
-						case 'sv':
-							ountry_png = 'Sweden.png'
-							break;
-						case 'te':
-							ountry_png = 'India.png'
-							break;
-						case 'tl':
-							ountry_png = 'Philippines.png'
-							break;
-						case 'tr':
-							ountry_png = 'Turkey.png'
-							break;
-						case 'und':
-							ountry_png = 'UNK'
-							break;
-						case 'uz':
-							ountry_png = 'Kazakhstan'
-							break;
-						case 'vi':
-							ountry_png = 'Vietnam.png'
-							break;
-						case 'zu':
-							ountry_png = 'South-Africa.png'
-							break;
-						case 'bn':
-							ountry_png = 'Bangladesh.png'
-							break;
-						case 'cs':
-							ountry_png = 'Czech-Republic.png'
-							break;
-						case 'da':
-							ountry_png = 'Denmark.png'
-							break;
-						case 'el':
-							ountry_png = 'Greece.png'
-							break;
-						case 'es':
-							ountry_png = 'Spain.png'
-							break;
-						case 'fi':
-							ountry_png = 'Finland.png'
-							break;
-						case 'fy':
-							ountry_png = 'Armenia.png'
-							break;
-						case 'hr':
-							ountry_png = 'Croatia.png'
-							break;
-						case 'id':
-							ountry_png = 'Indonesia.png'
-							break;
-						case 'la':
-							ountry_png = 'Vatican-City.png'
-							break;
-						case 'ms':
-							ountry_png = 'Malaysia.png'
-							break;
-						case 'nl':
-							ountry_png = 'Netherlands.png'
-							break;
-						case 'pl':
-							ountry_png = 'Poland.png'
+	var conference = 'acl'
+	var urlParam = location.search.substring(1);
+	if(urlParam) {
+		conference = urlParam.split('=')[1];
+	}
 
+	// alert(location.hash)
+	$('a.filter_link').click(function(){
+		// alert('aa');
+		// alert(location.hash)
+		filter_papers($(this).attr('href'))
+	});
+
+	function show_papers(lang_filter){
+
+		$.getJSON("static/data/"+conference+"_2017_labeled.json" , function(data) {
+			var ulObj = $("#demo"), len = data.length;
+			ulObj.html('')
+			for(var i = 0; i < len; i++) {
+				var title = data[i].title;
+				var authors = data[i].authors;
+				var authors_str = authors.join(', ');
+
+				var countries = [];
+				var html_authors = [];
+
+				for(var j=0; j < authors.length; j++){
+					var c = data[i].country[j]
+					countries.push(c)
+
+					country_png = get_country_png(data[i].country[j])
+					tag = '<span><div style="float:left;"><img src="./static/img/'+country_png+'" style="width:25px;"></div> <div style="float:left; font-weight:bold; padding-left:10px; padding-right:10px;">' + authors[j] + '</div></span>'
+
+					html_authors.push(tag)
 				}
-			var li_item = '<article class="post"><h4>' + title +'</h4><div class="media"><div class="media-left"><p class="image is-32x32"><img src="./static/img/'+country_png+'"></p></div><div class="media-content"><div class="content"><p> ' + authors_str + '</p></div></div><div class="media-right"><span class="has-text-grey-light"><span class="tag"><a href="' + pdf_url + '">PDF</a></span></span></div></div></article>'
+				var first_author_country = data[i].country[0]; // zh-CN
+				var country_png = get_country_png(first_author_country)
+				var pdf_url = data[i].pdf
+				var li_item = '<article class="post" data-lang="' + countries.join(',') + '"><h4>'+title +'</h4><div class="media"><div class="media-content"><div class="content"><p> ' + html_authors.join(' ') + '</p></div></div><div class="media-right"><span class="has-text-grey-light"><span class="tag"><a href="' + pdf_url + '">PDF</a></span></span></div></div></article>'
+				// console.log(lang_filter.split('#')[1])
+				// console.log(countries)
+				if (lang_filter == "default") {
+					ulObj.append(li_item)
+				}else if (countries.indexOf(lang_filter.split('#')[1]) >= 0 ) {
+					ulObj.append(li_item)
+				}
 
-			ulObj.append(li_item)
-      // ulObj.append($("<li>").attr({"id":data[i].id}).text(data[i].name));
-    }
-  });
+				// ulObj.append($("<li>").attr({"id":data[i].id}).text(data[i].name));
+			}
+		});
+	}
+
+	show_papers("default");
+	function filter_papers(lang){
+			show_papers(lang)
+	}
+
+
+	function get_country_png(author_country){
+		country_png = 'unk.png'
+		switch(author_country) {
+					case 'zh-CN':
+						country_png = 'China.png'
+						break;
+					case 'en':
+						country_png = 'United-States.png'
+						break;
+					case 'de':
+						country_png = 'Germany.png'
+						break;
+					case 'ja':
+						country_png = 'Japan.png'
+						break;
+					case 'hi':
+						country_png = 'India.png'
+						break;
+					case 'fr':
+						country_png = 'France.png'
+						break;
+					case 'it':
+						country_png = 'Italy.png'
+						break;
+					case 'eu':
+						country_png = 'Basque-Country.png'
+						break;
+					case 'ar':
+						country_png = 'Saudi-Arabia.png'
+						break;
+					case 'az':
+						country_png = 'Azerbaijan.png'
+						break;
+					case 'bg':
+						country_png = 'Bulgaria.png'
+						break;
+					case 'pt':
+						country_png = 'Portugal.png'
+						break;
+					case 'ro':
+						country_png = 'Romania.png'
+						break;
+					case 'ru':
+						country_png = 'Russia.png'
+						break;
+					case 'sk':
+						country_png = 'Slovakia.png'
+						break;
+					case 'sl':
+						country_png = 'Slovenia.png'
+						break;
+					case 'sq':
+						country_png = 'Albania.png'
+						break;
+					case 'sv':
+						country_png = 'Sweden.png'
+						break;
+					case 'te':
+						country_png = 'India.png'
+						break;
+					case 'tl':
+						country_png = 'Philippines.png'
+						break;
+					case 'tr':
+						country_png = 'Turkey.png'
+						break;
+					case 'und':
+						country_png = 'UNK'
+						break;
+					case 'uz':
+						country_png = 'Kazakhstan'
+						break;
+					case 'vi':
+						country_png = 'Vietnam.png'
+						break;
+					case 'zu':
+						country_png = 'South-Africa.png'
+						break;
+					case 'bn':
+						country_png = 'Bangladesh.png'
+						break;
+					case 'cs':
+						country_png = 'Czech-Republic.png'
+						break;
+					case 'da':
+						country_png = 'Denmark.png'
+						break;
+					case 'el':
+						country_png = 'Greece.png'
+						break;
+					case 'es':
+						country_png = 'Spain.png'
+						break;
+					case 'fi':
+						country_png = 'Finland.png'
+						break;
+					case 'fy':
+						country_png = 'Armenia.png'
+						break;
+					case 'hr':
+						country_png = 'Croatia.png'
+						break;
+					case 'id':
+						country_png = 'Indonesia.png'
+						break;
+					case 'la':
+						country_png = 'Vatican-City.png'
+						break;
+					case 'ms':
+						country_png = 'Malaysia.png'
+						break;
+					case 'nl':
+						country_png = 'Netherlands.png'
+						break;
+					case 'pl':
+						country_png = 'Poland.png'
+
+			}
+			return country_png
+	}
 });
 </script>
 
@@ -171,8 +218,8 @@ $(function() {
 				</div>
 				<div id="topNav" class="navbar-menu">
 					<div class="navbar-start">
-						<a class="navbar-item" href="#ACL_2017">ACL 2017</a>
-						<a class="navbar-item" href="#NIPS_2017">NIPS 2017</a>
+						<a class="navbar-item" href="?c=acl">ACL 2017</a>
+						<a class="navbar-item" href="?c=nips">NIPS 2017</a>
 					</div>
 				</div>
 			</div>
@@ -185,9 +232,9 @@ $(function() {
 							COUNTRY
 						</p>
 						<ul class="menu-list">
-							<li><span class="tag is-primary is-medium ">Japanese</span></li>
-							<li><span class="tag is-link is-medium ">English</span></li>
-							<li><span class="tag is-light is-danger is-medium ">Chinese</span></li>
+							<a href="#ja" class="filter_link" style="padding:0;"><li><span class="tag is-primary is-medium ">Japanese</span></li></a>
+						  <a href="#en" class="filter_link" style="padding:0;"><li><span class="tag is-link is-medium ">English</span></li></a>
+							<a href="#zh-CN" class="filter_link" style="padding:0;"><li><span class="tag is-light is-danger is-medium ">Chinese</span></li></a>
 						</ul>
 					</aside>
 				</div>
@@ -209,20 +256,6 @@ $(function() {
 			<div class="container">
 				<div class="content has-text-centered">
 					<div class="columns is-mobile is-centered">
-						<div class="field is-grouped is-grouped-multiline">
-							<div class="control">
-								<div class="tags has-addons">
-									<a class="tag is-link" href="https://github.com/dansup/bulma-templates">Bulma Templates</a>
-									<span class="tag is-light">Daniel Supernault</span>
-								</div>
-							</div>
-							<div class="control">
-								<div class="tags has-addons">
-									<a class="tag is-link">The source code is licensed</a>
-									<span class="tag is-light">MIT &nbsp;<i class="fa fa-github"></i></span>
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
