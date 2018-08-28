@@ -11,5 +11,6 @@ def index():
 def js_test():
     return render_template('js_test.html')
 
+
 if __name__ == '__main__':
     app.run()

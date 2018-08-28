@@ -12,6 +12,147 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css" />
 		<link rel="stylesheet" type="text/css" href="./static/css/forum.css">
 		<link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Zilla+Slab" rel="stylesheet">
+		<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+
+		<script>
+$(function() {
+  $.getJSON("static/data/acl_2017_labeled.json" , function(data) {
+    var ulObj = $("#demo"), len = data.length;
+    for(var i = 0; i < len; i++) {
+			var title = data[i].title;
+			var authors = data[i].authors;
+			var authors_str = authors.join(', ');
+
+			var first_author_country = data[i].country[0]; // zh-CN
+			var country_png = 'unk.png'
+			var pdf_url = data[i].pdf
+			switch(first_author_country) {
+				    case 'zh-CN':
+							country_png = 'China.png'
+							break;
+				    case 'en':
+							country_png = 'United-States.png'
+				      break;
+				    case 'de':
+							country_png = 'Germany.png'
+							break;
+				    case 'ja':
+							country_png = 'Japan.png'
+							break;
+				    case 'hi':
+							country_png = 'India.png'
+							break;
+				    case 'fr':
+							country_png = 'France.png'
+							break;
+				    case 'it':
+							country_png = 'Italy.png'
+							break;
+						case 'eu':
+							ountry_png = 'Basque-Country.png'
+							break;
+						case 'ar':
+							ountry_png = 'Saudi-Arabia.png'
+							break;
+						case 'az':
+							ountry_png = 'Azerbaijan.png'
+							break;
+						case 'bg':
+							ountry_png = 'Bulgaria.png'
+							break;
+						case 'pt':
+							ountry_png = 'Portugal.png'
+							break;
+						case 'ro':
+							ountry_png = 'Romania.png'
+							break;
+						case 'ru':
+							ountry_png = 'Russia.png'
+							break;
+						case 'sk':
+							ountry_png = 'Slovakia.png'
+							break;
+						case 'sl':
+							ountry_png = 'Slovenia.png'
+							break;
+						case 'sq':
+							ountry_png = 'Albania.png'
+							break;
+						case 'sv':
+							ountry_png = 'Sweden.png'
+							break;
+						case 'te':
+							ountry_png = 'India.png'
+							break;
+						case 'tl':
+							ountry_png = 'Philippines.png'
+							break;
+						case 'tr':
+							ountry_png = 'Turkey.png'
+							break;
+						case 'und':
+							ountry_png = 'UNK'
+							break;
+						case 'uz':
+							ountry_png = 'Kazakhstan'
+							break;
+						case 'vi':
+							ountry_png = 'Vietnam.png'
+							break;
+						case 'zu':
+							ountry_png = 'South-Africa.png'
+							break;
+						case 'bn':
+							ountry_png = 'Bangladesh.png'
+							break;
+						case 'cs':
+							ountry_png = 'Czech-Republic.png'
+							break;
+						case 'da':
+							ountry_png = 'Denmark.png'
+							break;
+						case 'el':
+							ountry_png = 'Greece.png'
+							break;
+						case 'es':
+							ountry_png = 'Spain.png'
+							break;
+						case 'fi':
+							ountry_png = 'Finland.png'
+							break;
+						case 'fy':
+							ountry_png = 'Armenia.png'
+							break;
+						case 'hr':
+							ountry_png = 'Croatia.png'
+							break;
+						case 'id':
+							ountry_png = 'Indonesia.png'
+							break;
+						case 'la':
+							ountry_png = 'Vatican-City.png'
+							break;
+						case 'ms':
+							ountry_png = 'Malaysia.png'
+							break;
+						case 'nl':
+							ountry_png = 'Netherlands.png'
+							break;
+						case 'pl':
+							ountry_png = 'Poland.png'
+
+				}
+			var li_item = '<article class="post"><h4>' + title +'</h4><div class="media"><div class="media-left"><p class="image is-32x32"><img src="./static/img/'+country_png+'"></p></div><div class="media-content"><div class="content"><p> ' + authors_str + '</p></div></div><div class="media-right"><span class="has-text-grey-light"><span class="tag"><a href="' + pdf_url + '">PDF</a></span></span></div></div></article>'
+
+			ulObj.append(li_item)
+      // ulObj.append($("<li>").attr({"id":data[i].id}).text(data[i].name));
+    }
+  });
+});
+</script>
 
 
 	</head>
@@ -57,132 +198,9 @@
 
 
 					<div class="box content">
-						<article class="post">
-							<h4>Bulma: How do you center a button in a box?</h4>
-							<div class="media">
-								<div class="media-left">
-									<p class="image is-32x32">
-										<img src="http://bulma.io/images/placeholders/128x128.png">
-									</p>
-								</div>
-								<div class="media-content">
-									<div class="content">
-										<p>
-											<a href="#">@jsmith</a> replied 34 minutes ago &nbsp;
-											<span class="tag">Question</span>
-										</p>
-									</div>
-								</div>
-								<div class="media-right">
-									<span class="has-text-grey-light"><i class="fa fa-comments"></i> 1</span>
-								</div>
-							</div>
-						</article>
-						<article class="post">
-							<h4>How can I make a bulma button go full width?</h4>
-							<div class="media">
-								<div class="media-left">
-									<p class="image is-32x32">
-										<img src="http://bulma.io/images/placeholders/128x128.png">
-									</p>
-								</div>
-								<div class="media-content">
-									<div class="content">
-										<p>
-											<a href="#">@red</a> replied 40 minutes ago &nbsp;
-											<span class="tag">Question</span>
-										</p>
-									</div>
-								</div>
-								<div class="media-right">
-									<span class="has-text-grey-light"><i class="fa fa-comments"></i> 0</span>
-								</div>
-							</div>
-						</article>
-						<article class="post">
-							<h4>TypeError: Data must be a string or a buffer when trying touse vue-bulma-tabs</h4>
-							<div class="media">
-								<div class="media-left">
-									<p class="image is-32x32">
-										<img src="http://bulma.io/images/placeholders/128x128.png">
-									</p>
-								</div>
-								<div class="media-content">
-									<div class="content">
-										<p>
-											<a href="#">@jsmith</a> replied 53 minutes ago &nbsp;
-											<span class="tag">Question</span>
-										</p>
-									</div>
-								</div>
-								<div class="media-right">
-									<span class="has-text-grey-light"><i class="fa fa-comments"></i> 13</span>
-								</div>
-							</div>
-						</article>
-						<article class="post">
-							<h4>How to vertically center elements in Bulma?</h4>
-							<div class="media">
-								<div class="media-left">
-									<p class="image is-32x32">
-										<img src="http://bulma.io/images/placeholders/128x128.png">
-									</p>
-								</div>
-								<div class="media-content">
-									<div class="content">
-										<p>
-											<a href="#">@brown</a> replied 3 hours ago &nbsp;
-											<span class="tag">Question</span>
-										</p>
-									</div>
-								</div>
-								<div class="media-right">
-									<span class="has-text-grey-light"><i class="fa fa-comments"></i> 2</span>
-								</div>
-							</div>
-						</article>
-						<article class="post">
-							<h4>I'm trying to use hamburger menu on bulma css, but it doesn't work. What is wrong?</h4>
-							<div class="media">
-								<div class="media-left">
-									<p class="image is-32x32">
-										<img src="http://bulma.io/images/placeholders/128x128.png">
-									</p>
-								</div>
-								<div class="media-content">
-									<div class="content">
-										<p>
-											<a href="#">@hamburgler</a> replied 5 hours ago &nbsp;
-											<span class="tag">Question</span>
-										</p>
-									</div>
-								</div>
-								<div class="media-right">
-									<span class="has-text-grey-light"><i class="fa fa-comments"></i> 2</span>
-								</div>
-							</div>
-						</article>
-						<article class="post">
-							<h4>How to make tiles wrap with Bulma CSS?</h4>
-							<div class="media">
-								<div class="media-left">
-									<p class="image is-32x32">
-										<img src="http://bulma.io/images/placeholders/128x128.png">
-									</p>
-								</div>
-								<div class="media-content">
-									<div class="content">
-										<p>
-											<a href="#">@rapper</a> replied 3 hours ago &nbsp;
-											<span class="tag">Question</span>
-										</p>
-									</div>
-								</div>
-								<div class="media-right">
-									<span class="has-text-grey-light"><i class="fa fa-comments"></i> 2</span>
-								</div>
-							</div>
-						</article>
+
+						<div id="demo"></div>
+
 					</div>
 				</div>
 			</div>
