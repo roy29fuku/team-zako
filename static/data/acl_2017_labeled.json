@@ -1,15 +1,5 @@
 [
     {
-        "title": "Front Matter",
-        "authors": [
-            "Entire volume"
-        ],
-        "pdf": "http://aclweb.org/anthology/P/P17/P17-1.pdf",
-        "country": [
-            "en"
-        ]
-    },
-    {
         "title": "Adversarial Multi-task Learning for Text Classification",
         "authors": [
             "Pengfei Liu",
@@ -3022,16 +3012,6 @@
         ]
     },
     {
-        "title": "Front Matter",
-        "authors": [
-            "Entire volume"
-        ],
-        "pdf": "http://aclweb.org/anthology/P/P17/P17-2.pdf",
-        "country": [
-            "en"
-        ]
-    },
-    {
         "title": "Classifying Temporal Relations by Bidirectional LSTM over Dependency Paths",
         "authors": [
             "Fei Cheng",
@@ -4614,16 +4594,6 @@
         ]
     },
     {
-        "title": "Front Matter",
-        "authors": [
-            "Entire volume"
-        ],
-        "pdf": "http://aclweb.org/anthology/P/P17/P17-3.pdf",
-        "country": [
-            "en"
-        ]
-    },
-    {
         "title": "Computational Characterization of Mental States: A Natural Language Processing Approach",
         "authors": [
             "Facundo Carrillo"
@@ -4925,16 +4895,6 @@
         "pdf": "http://aclweb.org/anthology/P/P17/P17-3023.pdf",
         "country": [
             "zh-CN"
-        ]
-    },
-    {
-        "title": "Front Matter",
-        "authors": [
-            "Entire volume"
-        ],
-        "pdf": "http://aclweb.org/anthology/P/P17/P17-4.pdf",
-        "country": [
-            "en"
         ]
     },
     {
@@ -5309,16 +5269,6 @@
             "ms",
             "bn",
             "de"
-        ]
-    },
-    {
-        "title": "Front Matter",
-        "authors": [
-            "Entire volume"
-        ],
-        "pdf": "http://aclweb.org/anthology/P/P17/P17-5.pdf",
-        "country": [
-            "en"
         ]
     },
     {
