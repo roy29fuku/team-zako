@@ -597,7 +597,7 @@
         "pdf": "http://aclweb.org/anthology/P/P17/P17-1036.pdf",
         "paper_type": "Long",
         "country": [
-            "ja",
+            "en",
             "en",
             "tl",
             "ro"
@@ -1324,7 +1324,7 @@
         "pdf": "http://aclweb.org/anthology/P/P17/P17-1080.pdf",
         "paper_type": "Long",
         "country": [
-            "ja",
+            "en",
             "en",
             "mr",
             "ar",
@@ -1700,7 +1700,7 @@
             "en",
             "ro",
             "fr",
-            "ja",
+            "en",
             "fr"
         ]
     },
@@ -1716,7 +1716,7 @@
         "country": [
             "de",
             "de",
-            "ja"
+            "en"
         ]
     },
     {
